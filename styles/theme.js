@@ -1,0 +1,55 @@
+export const theme = {
+	colours: {
+		black: '#000000',
+		white: '#ffffff',
+	},
+	fonts: {
+		default: 'arial',
+	},
+	size: {
+		small: '0.667rem',
+		body: '1rem',
+		h6: '1.333rem',
+		h5: '1.556rem',
+		h4: '1.778rem',
+		h3: '2.222rem',
+		h2: '5.111rem',
+		h1: '7.333rem',
+	},
+	sizeTablet: {
+		small: '0.667rem',
+		body: '1rem',
+		h6: '1.333rem',
+		h5: '1.556rem',
+		h4: '1.778rem',
+		h3: '2.222rem',
+		h2: '5.111rem',
+		h1: '7.333rem',
+	},
+	sizeMobile: {
+		small: '0.667rem',
+		body: '1rem',
+		h6: '1.333rem',
+		h5: '1.556rem',
+		h4: '1.778rem',
+		h3: '2.222rem',
+		h2: '5.111rem',
+		h1: '7.333rem',
+	},
+	mediaBreakpoints: {
+		desktop: '(min-width: 1680px)',
+		laptop: '(max-width: 1679px)',
+		tabletLandscape: '(max-width: 1440px)',
+		tabletMedium: '(max-width: 1124px)',
+		tabletPortrait: '(max-width: 768px)',
+		mobile: '(max-width: 550px)',
+	},
+	layout: {
+		innerWrapper: '1920px',
+	},
+	transitionSpeed: {
+		default: '200ms',
+		fast: '100ms',
+		slow: '1000ms',
+	},
+};
