@@ -23,12 +23,25 @@ const fetchAPI = async (query, { variables } = {}) => {
 
 const getSiteData = async () => {
 	const query = `query Query {
-		siteConfiguration {
-			seo: _seoMetaTags {
-				attributes
-				content
-				tag
+		dashboard {
+			introductionExcerpt
+			description {
+				blocks
+				links
+				value
 			}
+			instagramUrl
+			linkedinUrl
+			email
+			aoc
+			headshotVideo {
+				url
+			}
+			workAvailabilityIconColour {
+				hex
+			}
+			workAvailabilityIdleTitle
+			workAvailabilityHoverTitle
 		}
 	}`;
 	const data = await fetchAPI(query);
