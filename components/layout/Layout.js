@@ -4,14 +4,14 @@ import styled from 'styled-components';
 
 const Main = styled.main``;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, data }) => {
 	return (
 		<>
-			<Header />
+			{data && <Header data={data} />}
 			<Main>
 				{ children }
 			</Main>
-			<Footer />
+			{data && <Footer />}
 		</>
 	)
 };

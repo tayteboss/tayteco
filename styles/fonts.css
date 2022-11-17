@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'Studio Pro';
+	src: url('/fonts/StudioPro-Regular.woff') format('woff'),
+		url('/fonts/StudioPro-Regular.oft') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

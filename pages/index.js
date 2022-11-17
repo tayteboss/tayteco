@@ -1,13 +1,17 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { renderMetaTags } from 'react-datocms';
 import styled from 'styled-components';
 import { getDashboard, getProjects } from '../lib/datocms';
 
 const PageWrapper = styled.div``;
 
-const Page = ({ data, projects }) => {
-	console.log('data', data);
-	console.log('projects', projects);
+const Page = ({ data, projects, setDashboardData }) => {
+
+	useEffect(() => {
+	  setDashboardData(data?.dashboard);
+	}, [data]);
+	
 	return (
 		<PageWrapper>
 			{/* <Head>{renderMetaTags(data.seo)}</Head> */}

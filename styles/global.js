@@ -2,6 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
 
 export const GlobalStyles = createGlobalStyle`
+	:root {
+		--colour-intro-back: ${theme.colours.backThunder};
+		--colour-intro-fore: ${theme.colours.foreThunder};
+		--colour-black: ${theme.colours.black};
+		--colour-white: ${theme.colours.white};
+	}
+
 	/* Set Font Family's */
 	h1,
 	h2,
@@ -20,11 +27,11 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	/* Set Font Styles */
-	p
+	p,
+	div
 	{
-		font-size: ${theme.size.body1};
-		letter-spacing: -0.033rem;
-		line-height: 1.556rem;
+		font-size: ${theme.size.body};
+		line-height: 1.25rem;
 	}
 
 	strong
@@ -37,133 +44,46 @@ export const GlobalStyles = createGlobalStyle`
 		color: ${theme.colours.black};
 	}
 
-	small
-	{
-		font-size: ${theme.size.utility};
-		letter-spacing: -0.014rem;
-		line-height: 1.222rem;
-	}
-
 	h1,
 	.type-h1
 	{
 		font-size: ${theme.size.h1};
-		letter-spacing: -0.361rem;
-		line-height: 6.778rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h1};
-			letter-spacing: -0.222rem;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h1};
-			line-height: 5.111rem;
-		}
+		line-height: 1.25rem;
 	}
 
 	h2,
 	.type-h2
 	{
 		font-size: ${theme.size.h2};
-		letter-spacing: -0.222rem;
-		line-height: 5.111rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h2};
-			letter-spacing: -0.139rem;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h2};
-			line-height: 2.9724rem;
-		}
+		line-height: 1.25rem;
 	}
 
 	h3,
 	.type-h3
 	{
 		font-size: ${theme.size.h3};
-		letter-spacing: -0.042rem;
-		line-height: 2.444rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h3};
-			line-height: 1.889rem;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h3};
-			line-height: 1.889rem;
-		}
+		line-height: 1.25rem;
 	}
 
 	h4,
 	.type-h4
 	{
 		font-size: ${theme.size.h4};
-		letter-spacing: -0.042rem;
-		line-height: 1.889rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h4};
-			letter-spacing: -0.028rem;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h4};
-			letter-spacing: -0.028rem;
-		}
+		line-height: 1.25rem;
 	}
 
 	h5,
 	.type-h5
 	{
 		font-size: ${theme.size.h5};
-		letter-spacing: -0.028rem;
-		line-height: 1.778rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h5};
-			letter-spacing: -0.042rem;
-			line-height: 1.667rem;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h5};
-			letter-spacing: -0.042rem;
-		}
+		line-height: 1.25rem;
 	}
 
 	h6,
 	.type-h6
 	{
 		font-size: ${theme.size.h6};
-		letter-spacing: -0.025rem;
-		line-height: 1.667rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h6};
-			letter-spacing: -0.014rem;
-			line-height: 1.333rem;
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h6};
-			line-height: 1.333rem;
-		}
+		line-height: 1.25rem;
 	}
 
 	body
