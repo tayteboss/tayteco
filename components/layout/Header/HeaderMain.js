@@ -16,6 +16,7 @@ const InitialRHS = styled.div`
 
 const ScrollTrigger = styled.button`
 	color: var(--colour-intro-fore);
+	text-decoration: underline;
 `;
 
 const HeaderMain = () => {

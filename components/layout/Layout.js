@@ -12,7 +12,7 @@ const Layout = ({ children, data, cursorRefresh }) => {
 			<Main>
 				{ children }
 			</Main>
-			{data && <Footer />}
+			{/* {data && <Footer />} */}
 			<Cursor cursorRefresh={cursorRefresh} />
 		</>
 	)

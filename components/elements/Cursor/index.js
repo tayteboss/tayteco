@@ -26,11 +26,11 @@ const CursorRing = styled(motion.div)`
 	flex-flow: row;
 	align-content: center;
 	justify-content: center;
-	top: ${props => props.isHoveringLink ? '-15px' : '-7px'};
-	left: ${props => props.isHoveringLink ? '-15px' : '-7px'};
-	height: ${props => props.isHoveringLink ? '30px' : '15px'};
-	width: ${props => props.isHoveringLink ? '30px' : '15px'};
-	background: ${props => props.isHoveringLink ? props.theme.colours.white : 'none'};
+	top: ${props => props.$isHoveringLink ? '-15px' : '-7px'};
+	left: ${props => props.$isHoveringLink ? '-15px' : '-7px'};
+	height: ${props => props.$isHoveringLink ? '30px' : '15px'};
+	width: ${props => props.$isHoveringLink ? '30px' : '15px'};
+	background: ${props => props.$isHoveringLink ? props.theme.colours.white : 'none'};
 	border-radius: 50%;
 	border: 1px solid ${props => props.theme.colours.white};
 	mix-blend-mode: ${props => props.isHoveringViewLink ? 'normal' : 'difference'};
@@ -130,7 +130,7 @@ const Cursor = ({ cursorRefresh }) => {
 			className="cursor-wrapper"
 		>
 			<CursorRing
-				isHoveringLink={isHoveringLink}
+				$isHoveringLink={isHoveringLink}
 				variants={variantsWrapper}
 				animate="visible"
 			>

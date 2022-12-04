@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
 		--colour-intro-back: ${theme.colours.backThunder};
 		--colour-intro-fore: ${theme.colours.foreThunder};
 		--colour-black: ${theme.colours.black};
+		--colour-true-black: ${theme.colours.trueBlack};
 		--colour-white: ${theme.colours.white};
 	}
 
@@ -158,7 +159,7 @@ export const GlobalStyles = createGlobalStyle`
 	html,
 	#root
 	{
-		background: ${theme.colours.white};
+		background: var(--colour-intro-back);
 		font-size: 18px;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: antialiased;
@@ -196,6 +197,7 @@ export const GlobalStyles = createGlobalStyle`
 	{
 		text-decoration: none;
 		color: ${theme.colours.black};
+		cursor: none;
 	}
 
 	button

@@ -1,6 +1,7 @@
 export const theme = {
 	colours: {
-		black: '#000000',
+		black: '#1F1E1D',
+		trueBlack: '#000000',
 		white: '#ffffff',
 		backThunder: '#444443',
 		foreThunder: '#ABABA8'
