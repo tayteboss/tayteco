@@ -13,11 +13,25 @@ import { FacebookPixel } from '../components/common/Tracking/FacebookPixel';
 
 function App({ Component, pageProps }) {
 	const [dashboardData, setDashboardData] = useState(null);
+	const [cursorRefresh, setCursorRefresh] = useState(0);
 	const router = useRouter();
 
 	const handleExitComplete = () => {
 		window.scrollTo(0, 0);
 	};
+
+	useEffect(() => {
+		const setVh = () => {
+			let vh = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty('--vh', `${vh}px`);
+		};
+
+		window.addEventListener('resize', () => {
+			setVh();
+		});
+
+		setVh();
+	}, []);
 
 	// Setup google tracking
 	const routerEvents = router.events;
@@ -42,11 +56,19 @@ function App({ Component, pageProps }) {
 			<GoogleAnalytics />
 			<FacebookPixel />
 			<ThemeProvider theme={theme}>
-				<Layout data={dashboardData}>
+				<Layout
+					data={dashboardData}
+					cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
+				>
 					<AnimatePresence
 						onExitComplete={() => handleExitComplete()}
 					>
-						<Component {...pageProps} setDashboardData={setDashboardData} key={router.asPath} />
+						<Component
+							{...pageProps}
+							setDashboardData={setDashboardData}
+							key={router.asPath}
+							cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
+						/>
 					</AnimatePresence>
 				</Layout>
 			</ThemeProvider>

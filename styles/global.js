@@ -28,7 +28,8 @@ export const GlobalStyles = createGlobalStyle`
 
 	/* Set Font Styles */
 	p,
-	div
+	div,
+	.type-p
 	{
 		font-size: ${theme.size.body};
 		line-height: 1.25rem;
@@ -162,6 +163,7 @@ export const GlobalStyles = createGlobalStyle`
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: antialiased;
 		font-smooth: antialiased;
+		cursor: none !important;
 
 		transition: all 300ms ease;
 
@@ -201,7 +203,7 @@ export const GlobalStyles = createGlobalStyle`
 		background: none;
 		outline: none;
 		border: none;
-		cursor: pointer;
+		cursor: none;
 	}
 
 	button,
