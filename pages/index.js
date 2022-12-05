@@ -1,9 +1,6 @@
-import Head from 'next/head';
-import { useEffect } from 'react';
-import { renderMetaTags } from 'react-datocms';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Grid from '../components/common/Grid';
-import InnerWrapper from '../components/common/InnerWrapper';
 import { getDashboard, getProjects } from '../lib/datocms';
 import ProjectGrid from '../components/blocks/ProjectGrid';
 import ProjectList from '../components/blocks/ProjectList';
@@ -13,10 +10,16 @@ const PageWrapper = styled.div`
 `;
 
 const PageWrapperInner = styled.div`
-	padding: 32px 0;
+	padding-top: 32px;
+	padding-bottom: 32px;
+	padding-left: ${(props) => props.$gridIsActive ? '0' : '16px'};
+	padding-right: ${(props) => props.$gridIsActive ? '16px' : '0'};
+	display: flex;
+	column-gap: 16px;
 `;
 
 const Page = ({ data, projects, setDashboardData }) => {
+	const [gridIsActive, setGridIsActive] = useState(true);
 
 	useEffect(() => {
 	  setDashboardData(data?.dashboard);
@@ -24,11 +27,17 @@ const Page = ({ data, projects, setDashboardData }) => {
 	
 	return (
 		<PageWrapper>
-			<PageWrapperInner>
-				<Grid>
-					<ProjectList data={projects?.allProjects} />
-					<ProjectGrid data={projects?.allProjects} />
-				</Grid>
+			<PageWrapperInner $gridIsActive={gridIsActive}>
+				<ProjectList
+					data={projects?.allProjects}
+					isActive={!gridIsActive}
+					setGridIsActive={setGridIsActive}
+				/>
+				<ProjectGrid
+					data={projects?.allProjects}
+					isActive={gridIsActive}
+					setGridIsActive={setGridIsActive}
+				/>
 			</PageWrapperInner>
 		</PageWrapper>
 	)

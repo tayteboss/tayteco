@@ -214,7 +214,7 @@ const ProjectGridCard = ({ data, forthcoming }) => {
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.2,
-		rootMargin: '100px'
+		rootMargin: '300px'
 	});
 
 	return (
