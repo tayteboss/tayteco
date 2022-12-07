@@ -4,10 +4,14 @@ import { theme } from './theme';
 export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-intro-back: ${theme.colours.backThunder};
+		--colour-intro-back-engaged: ${theme.colours.backThunderEngaged};
 		--colour-intro-fore: ${theme.colours.foreThunder};
 		--colour-black: ${theme.colours.black};
 		--colour-true-black: ${theme.colours.trueBlack};
 		--colour-white: ${theme.colours.white};
+		--transition-speed-fast: ${theme.transitionSpeed.fast};
+		--transition-speed-default: ${theme.transitionSpeed.default};
+		--transition-speed-slow: ${theme.transitionSpeed.slow};
 	}
 
 	/* Set Font Family's */
@@ -159,7 +163,7 @@ export const GlobalStyles = createGlobalStyle`
 	html,
 	#root
 	{
-		background: var(--colour-intro-back);
+		background: var(--colour-black);
 		font-size: 18px;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: antialiased;
@@ -177,6 +181,7 @@ export const GlobalStyles = createGlobalStyle`
 	html
 	{
 		scroll-behavior: smooth;
+		scroll-snap-type: y mandatory;
 
 		&.no-scroll
 		{

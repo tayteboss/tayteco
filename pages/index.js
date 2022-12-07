@@ -7,15 +7,16 @@ import ProjectList from '../components/blocks/ProjectList';
 
 const PageWrapper = styled.div`
 	background: var(--colour-black);
+	scroll-snap-align: end;
 `;
 
 const PageWrapperInner = styled.div`
 	padding-top: 32px;
-	padding-bottom: 32px;
 	padding-left: ${(props) => props.$gridIsActive ? '0' : '16px'};
 	padding-right: ${(props) => props.$gridIsActive ? '16px' : '0'};
 	display: flex;
 	column-gap: 16px;
+	height: calc(100vh - 55px);
 `;
 
 const Page = ({ data, projects, setDashboardData }) => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import _ from 'lodash';
+import throttle from 'lodash.throttle';
 
 export const useMousePosition = () => {
 	const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -7,7 +7,7 @@ export const useMousePosition = () => {
 	const setFromEvent = (e) => setPosition({ x: e.clientX, y: e.clientY });
 
 	useEffect(() => {
-		const throttledSetFromEvent = _.throttle(setFromEvent, 50);
+		const throttledSetFromEvent = throttle(setFromEvent, 50);
 		window.addEventListener('mousemove', throttledSetFromEvent);
 
 		return () => {

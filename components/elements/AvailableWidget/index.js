@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 const AvailableWidgetWrapper = styled.div`
 	display: flex;
 	align-items: center;
+
+	transition: all var(--transition-speed-fast) ease;
 `;
 
 const Icon = styled(motion.div)`
@@ -16,7 +18,7 @@ const Icon = styled(motion.div)`
 
 const Title = styled.p``;
 
-const wrapperVariants = {
+const IconVariants = {
 	hidden: {
 		opacity: 0,
 		transition: {
@@ -39,7 +41,7 @@ const AvailableWidget = () => {
 	return (
 		<AvailableWidgetWrapper>
 			<Icon
-				variants={wrapperVariants}
+				variants={IconVariants}
 				initial="hidden"
 				animate="visible"
 				exit="hidden"

@@ -7,7 +7,6 @@ const ProjectListWrapper = styled.div`
 	flex-direction: column;
 	align-items: flex-end;
 	overflow: hidden;
-	height: 100vh;
 
 	transition: all 500ms ease;
 `;
@@ -17,15 +16,13 @@ const ProjectListInner = styled.div`
 	max-width: calc(90vw - 32px);
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	height: calc(100vh - 55px);
 	overflow-y: auto;
 `;
 
 
 const ProjectList = ({ data, isActive, setGridIsActive }) => {
 	const hasData = data.length > 0;
-
-	console.log('isActive', isActive);
 
 	return (
 		<ProjectListWrapper

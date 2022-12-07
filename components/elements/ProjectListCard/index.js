@@ -53,8 +53,6 @@ const Text = styled.p`
 const ProjectListCardInner = ({ data, index }) => {
 	const { title, categories, link } = data;
 
-	console.log('link', link);
-
 	return (
 		<ProjectListCardWrapper>
 			<ContentWrapper>

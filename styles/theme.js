@@ -1,9 +1,10 @@
 export const theme = {
 	colours: {
-		black: '#1F1E1D',
+		black: '#17191A',
 		trueBlack: '#000000',
 		white: '#ffffff',
-		backThunder: '#444443',
+		backThunder: 'hsl(60deg 1% 26%)',
+		backThunderEngaged: 'hsl(60deg 1% 16%)',
 		foreThunder: '#ABABA8'
 	},
 	fonts: {

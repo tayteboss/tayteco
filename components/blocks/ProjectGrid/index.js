@@ -16,8 +16,9 @@ const ProjectGridWrapper = styled.div`
 const ProjectGridInner = styled.div`
 	min-width: calc(90vw - 32px);
 	max-width: calc(90vw - 32px);
-	height: 100vh;
+	height: calc(100vh - 55px);
 	overflow-y: auto;
+	padding-bottom: 60px;
 `;
 
 const ProjectGrid = ({ data, isActive, setGridIsActive }) => {
