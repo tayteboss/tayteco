@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import Grid from '../../common/Grid';
 import AvailableWidget from '../../elements/AvailableWidget';
 
-const HeaderMainWrapper = styled.div``;
+const HeaderMainWrapper = styled.div`
+	position: relative;
+	z-index: 2;
+`;
 
 const Logo = styled.div`
 	grid-column: 1 / 7;
-	position: relative;
 
 	transition: all var(--transition-speed-fast) ease;
 `;
@@ -26,8 +28,6 @@ const ScrollTrigger = styled(motion.button)`
 
 	transition: all var(--transition-speed-fast) ease;
 `;
-
-const MotionWrapper = styled(motion.div)``;
 
 const MenuTrigger = styled(motion.button)`
 	color: var(--colour-intro-fore);
@@ -55,11 +55,10 @@ const wrapperVariants = {
 	}
 };
 
-const HeaderMain = ({ isAtProjects }) => {
+const HeaderMain = ({ isAtProjects, setMenuIsOpen, menuIsOpen }) => {
 	const handleScrollToProjects = () => {
 		window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 	}
-
 	return (
 		<HeaderMainWrapper>
 			<Grid>
@@ -89,8 +88,9 @@ const HeaderMain = ({ isAtProjects }) => {
 								animate="visible"
 								exit="hidden"
 								key={3}
+								onClick={() => setMenuIsOpen(!menuIsOpen)}
 							>
-								More information
+								{menuIsOpen ? 'Close information' : 'More information'}
 							</MenuTrigger>
 						)}
 					</AnimatePresence>

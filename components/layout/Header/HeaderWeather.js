@@ -106,7 +106,7 @@ const HeaderWeather = () => {
 						animate="visible"
 						exit="hidden"
 					/>
-					<Location>Loading weather</Location>
+					<Location>Loading</Location>
 				</LoadingWrapper>
 			) : (
 				<>

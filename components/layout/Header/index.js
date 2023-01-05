@@ -4,6 +4,7 @@ import HeaderMain from './HeaderMain';
 import InnerWrapper from '../../common/InnerWrapper';
 import { useEffect, useState } from 'react';
 import throttle from 'lodash.throttle';
+import HeaderMenu from './HeaderMenu';
 
 const HeaderWrapper = styled.header`
 	background: ${(props) => props.$isAtProjects ? 'var(--colour-intro-back-engaged);' : 'var(--colour-intro-back)'};
@@ -11,6 +12,8 @@ const HeaderWrapper = styled.header`
 	height: ${(props) => props.$isReady ? '98vh' : '100vh'};
 	padding: 16px 0;
 	scroll-snap-align: end;
+	position: relative;
+	z-index: 2;
 
 	transition: all var(--transition-speed-slow) ease;
 
@@ -24,12 +27,14 @@ const HeaderInner = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
+	position: relative;
 `;
 
 const Header = ({ data, cursorRefresh }) => {
 	const [isReady, setIsReady] = useState(false);
 	const [isInitialScroll, setIsInitialScroll] = useState(true);
 	const [isAtProjects, setIsAtProjects] = useState(false);
+	const [menuIsOpen, setMenuIsOpen] = useState(false);
 
 	const handleScrollListener = () => {
 		if (scrollY < 10) {
@@ -47,6 +52,12 @@ const Header = ({ data, cursorRefresh }) => {
 
 	useEffect(() => {
 		cursorRefresh();
+		if (!menuIsOpen) return;
+		window.addEventListener('scroll', () => setMenuIsOpen(false));
+	}, [menuIsOpen])
+
+	useEffect(() => {
+		cursorRefresh();
 
 		if (isReady) {
 			const timer = setTimeout(() => {
@@ -59,7 +70,6 @@ const Header = ({ data, cursorRefresh }) => {
 			}
 		}
 	}, [isReady, isInitialScroll, isAtProjects])
-	
 
 	useEffect(() => {
 		const throttleScroll = throttle(handleScrollListener, 100);
@@ -85,6 +95,12 @@ const Header = ({ data, cursorRefresh }) => {
 					<HeaderMain
 						isInitialScroll={isInitialScroll}
 						isAtProjects={isAtProjects}
+						setMenuIsOpen={setMenuIsOpen}
+						menuIsOpen={menuIsOpen}
+					/>
+					<HeaderMenu
+						isOpen={menuIsOpen}
+						data={data}
 					/>
 				</HeaderInner>
 			</InnerWrapper>

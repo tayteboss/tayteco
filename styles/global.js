@@ -146,6 +146,12 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
+	.content {
+		p:not(:last-child) {
+			margin-bottom: 16px;
+		}
+	}
+
 	/* Resets */
 	*
 	{

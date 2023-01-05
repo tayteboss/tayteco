@@ -3,7 +3,10 @@ import Footer from './Footer';
 import styled from 'styled-components';
 import Cursor from '../elements/Cursor';
 
-const Main = styled.main``;
+const Main = styled.main`
+	position: relative;
+	z-index: 1;
+`;
 
 const Layout = ({ children, data, cursorRefresh, cursorLoading }) => {
 	return (
