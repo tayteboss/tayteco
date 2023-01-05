@@ -182,6 +182,7 @@ export const GlobalStyles = createGlobalStyle`
 	{
 		scroll-behavior: smooth;
 		scroll-snap-type: y mandatory;
+		overflow-y: hidden;
 
 		&.no-scroll
 		{
@@ -250,11 +251,6 @@ export const GlobalStyles = createGlobalStyle`
 	*:after
 	{
 		box-sizing: inherit;
-	}
-
-	html
-	{
-		overflow-y: scroll;
 	}
 
 	a

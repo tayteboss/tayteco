@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 const ProjectListCardWrapper = styled.div`
@@ -23,7 +24,7 @@ const ProjectListCardWrapper = styled.div`
 		width: 100%;
 		height: 1px;
 		background: var(--colour-intro-fore);
-		opacity: 0.33;
+		opacity: ${(props) => props.$forthcoming ? 0 : 0.33};
 	}
 	
 	&:last-child {
@@ -50,35 +51,88 @@ const Text = styled.p`
 	transition: all var(--transition-speed-fast) ease;
 `;
 
-const ProjectListCardInner = ({ data, index }) => {
+const Icon = styled(motion.div)`
+	background: var(--colour-intro-fore);
+	height: 10px;
+	width: 10px;
+	border-radius: 100%;
+`;
+
+const IconVariants = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 0.3,
+			ease: 'easeInOut'
+		}
+	},
+	visible: {
+		opacity: [1, 0],
+		transition: {
+			duration: 0.6,
+			ease: 'linear',
+			repeat: 'Infinity',
+			repeatType: "reverse",
+		}
+	}
+};
+
+const ProjectListCardInner = ({ data, index, forthcoming }) => {
 	const { title, categories, link } = data;
 
 	return (
-		<ProjectListCardWrapper>
-			<ContentWrapper>
-				{title && (
-					<Text>{title}</Text>
-				)}
-				{categories && (
-					<Text>{categories}</Text>
-				)}
-			</ContentWrapper>
-			<Text>{index < 9 ? `0${index + 1}` : index + 1}</Text>
+		<ProjectListCardWrapper $forthcoming={forthcoming}>
+			{forthcoming ? (
+				<>
+					<ContentWrapper>
+						<Text>Have a project?</Text>
+						<Text>Get in touch</Text>
+					</ContentWrapper>
+					<Icon
+						variants={IconVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+					/>
+				</>
+			) : (
+				<>
+					<ContentWrapper>
+						{title && (
+							<Text>{title}</Text>
+						)}
+						{categories && (
+							<Text>{categories}</Text>
+						)}
+					</ContentWrapper>
+					<Text>{index < 9 ? `0${index + 1}` : index + 1}</Text>
+				</>
+			)}
 		</ProjectListCardWrapper>
 	);
 };
 
-const ProjectListCard = ({ data, index }) => {
+const ProjectListCard = ({ data, index, forthcoming }) => {
 	const { link } = data;
 
 	return (
 		<>
-			{link ? (
-				<Link href={link} target="_blank">
-					<ProjectListCardInner data={data} index={index} />
+			{forthcoming ? (
+				<Link href="mailto:speakto@tayte.co">
+					<ProjectListCardInner
+						data={data}
+						index={index}
+						forthcoming={true}
+					/>
 				</Link>
 			) : (
-				<ProjectListCardInner data={data} index={index} />
+				link ? (
+					<Link href={link} target="_blank">
+						<ProjectListCardInner data={data} index={index} />
+					</Link>
+				) : (
+					<ProjectListCardInner data={data} index={index} />
+				)
 			)}
 		</>
 	);

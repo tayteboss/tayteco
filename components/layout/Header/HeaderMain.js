@@ -56,7 +56,6 @@ const wrapperVariants = {
 };
 
 const HeaderMain = ({ isAtProjects }) => {
-
 	const handleScrollToProjects = () => {
 		window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 	}
@@ -96,7 +95,6 @@ const HeaderMain = ({ isAtProjects }) => {
 						)}
 					</AnimatePresence>
 					<AvailableWidget />
-
 				</InitialRHS>
 			</Grid>
 		</HeaderMainWrapper>

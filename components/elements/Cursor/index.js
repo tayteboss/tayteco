@@ -26,10 +26,10 @@ const CursorRing = styled(motion.div)`
 	flex-flow: row;
 	align-content: center;
 	justify-content: center;
-	top: ${props => props.$isHoveringLink ? '-15px' : '-7px'};
-	left: ${props => props.$isHoveringLink ? '-15px' : '-7px'};
-	height: ${props => props.$isHoveringLink ? '30px' : '15px'};
-	width: ${props => props.$isHoveringLink ? '30px' : '15px'};
+	top: ${props => (props.$isHoveringLink || props.$cursorLoading) ? '-15px' : '-7px'};
+	left: ${props => (props.$isHoveringLink || props.$cursorLoading) ? '-15px' : '-7px'};
+	height: ${props => (props.$isHoveringLink || props.$cursorLoading) ? '30px' : '15px'};
+	width: ${props => (props.$isHoveringLink || props.$cursorLoading) ? '30px' : '15px'};
 	background: ${props => props.$isHoveringLink ? props.theme.colours.white : 'none'};
 	border-radius: 50%;
 	border: 1px solid ${props => props.theme.colours.white};
@@ -53,7 +53,31 @@ const CursorText = styled.span`
 	transition: opacity 300ms ease 300ms, padding-top 300ms ease;
 `;
 
-const Cursor = ({ cursorRefresh }) => {
+const Circle = styled(motion.div)`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 100%;
+	background: var(--colour-white);
+`;
+
+const circleVariants = {
+	hidden: {
+		height: '0',
+		width: '0'
+	},
+	visible: {
+		height: '30px',
+		width: '30px',
+		transition: {
+			duration: 1.5,
+			ease: "easeInOut"
+		}
+	}
+};
+
+const Cursor = ({ cursorRefresh, cursorLoading }) => {
 	const [isHoveringLink, setIsHoveringLink] = useState(false);
 	const [cursorText, setCursorText] = useState('');
 	const [isOnDevice, setIsOnDevice] = useState('');
@@ -86,6 +110,7 @@ const Cursor = ({ cursorRefresh }) => {
 	useEffect(() => {
 		const aTags = document.querySelectorAll('a');
 		const buttonTags = document.querySelectorAll('button');
+		const cursorLinks = document.querySelectorAll('.cursor-link');
 
 		aTags.forEach((link) => {
 			link.addEventListener('mouseenter', () => {
@@ -97,6 +122,15 @@ const Cursor = ({ cursorRefresh }) => {
 		});
 
 		buttonTags.forEach((link) => {
+			link.addEventListener('mouseenter', () => {
+				setIsHoveringLink(true);
+			});
+			link.addEventListener('mouseleave', () => {
+				setIsHoveringLink(false);
+			});
+		});
+
+		cursorLinks.forEach((link) => {
 			link.addEventListener('mouseenter', () => {
 				setIsHoveringLink(true);
 			});
@@ -133,7 +167,14 @@ const Cursor = ({ cursorRefresh }) => {
 				$isHoveringLink={isHoveringLink}
 				variants={variantsWrapper}
 				animate="visible"
+				$cursorLoading={cursorLoading}
 			>
+				<Circle
+					variants={circleVariants}
+					initial="hidden"
+					animate={cursorLoading ? 'visible' : 'hidden'}
+				/>
+
 				{/* <CursorText>
 					{cursorText}
 				</CursorText> */}

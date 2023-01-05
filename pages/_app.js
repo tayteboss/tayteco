@@ -14,6 +14,7 @@ import { FacebookPixel } from '../components/common/Tracking/FacebookPixel';
 function App({ Component, pageProps }) {
 	const [dashboardData, setDashboardData] = useState(null);
 	const [cursorRefresh, setCursorRefresh] = useState(0);
+	const [cursorLoading, setCursorLoading] = useState(false);
 	const router = useRouter();
 
 	const handleExitComplete = () => {
@@ -21,6 +22,8 @@ function App({ Component, pageProps }) {
 	};
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		const setVh = () => {
 			let vh = window.innerHeight * 0.01;
 			document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -59,6 +62,7 @@ function App({ Component, pageProps }) {
 				<Layout
 					data={dashboardData}
 					cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
+					cursorLoading={cursorLoading}
 				>
 					<AnimatePresence
 						onExitComplete={() => handleExitComplete()}
@@ -68,6 +72,7 @@ function App({ Component, pageProps }) {
 							setDashboardData={setDashboardData}
 							key={router.asPath}
 							cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
+							setCursorLoading={(val) => setCursorLoading(val)}
 						/>
 					</AnimatePresence>
 				</Layout>

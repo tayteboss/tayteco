@@ -10,7 +10,7 @@ const HeaderWrapper = styled.header`
 	color: var(--colour-intro-fore);
 	height: ${(props) => props.$isReady ? '98vh' : '100vh'};
 	padding: 16px 0;
-	scroll-snap-align: start;
+	scroll-snap-align: end;
 
 	transition: all var(--transition-speed-slow) ease;
 
@@ -38,7 +38,7 @@ const Header = ({ data, cursorRefresh }) => {
 			setIsInitialScroll(false);
 		}
 
-		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 300)) {
 			setIsAtProjects(true);
 		} else {
 			setIsAtProjects(false);
@@ -47,6 +47,17 @@ const Header = ({ data, cursorRefresh }) => {
 
 	useEffect(() => {
 		cursorRefresh();
+
+		if (isReady) {
+			const timer = setTimeout(() => {
+				const html = document.querySelector('html');
+				html.style.overflowY = 'scroll';
+			}, 1000);
+	
+			return () => {
+				clearTimeout(timer);
+			}
+		}
 	}, [isReady, isInitialScroll, isAtProjects])
 	
 
@@ -71,7 +82,10 @@ const Header = ({ data, cursorRefresh }) => {
 					<HeaderIntro
 						description={data.description}
 					/>
-					<HeaderMain isInitialScroll={isInitialScroll} isAtProjects={isAtProjects} />
+					<HeaderMain
+						isInitialScroll={isInitialScroll}
+						isAtProjects={isAtProjects}
+					/>
 				</HeaderInner>
 			</InnerWrapper>
 		</HeaderWrapper>

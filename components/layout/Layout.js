@@ -5,7 +5,7 @@ import Cursor from '../elements/Cursor';
 
 const Main = styled.main``;
 
-const Layout = ({ children, data, cursorRefresh }) => {
+const Layout = ({ children, data, cursorRefresh, cursorLoading }) => {
 	return (
 		<>
 			{data && <Header data={data} cursorRefresh={cursorRefresh} />}
@@ -13,7 +13,10 @@ const Layout = ({ children, data, cursorRefresh }) => {
 				{ children }
 			</Main>
 			{/* {data && <Footer />} */}
-			<Cursor cursorRefresh={cursorRefresh} />
+			<Cursor
+				cursorRefresh={cursorRefresh}
+				cursorLoading={cursorLoading}
+			/>
 		</>
 	)
 };
