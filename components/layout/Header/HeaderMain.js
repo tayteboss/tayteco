@@ -55,7 +55,7 @@ const wrapperVariants = {
 	}
 };
 
-const HeaderMain = ({ isAtProjects, setMenuIsOpen, menuIsOpen }) => {
+const HeaderMain = ({ isAtProjects, setMenuIsOpen, menuIsOpen, data }) => {
 	const handleScrollToProjects = () => {
 		window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 	}
@@ -94,7 +94,7 @@ const HeaderMain = ({ isAtProjects, setMenuIsOpen, menuIsOpen }) => {
 							</MenuTrigger>
 						)}
 					</AnimatePresence>
-					<AvailableWidget />
+					<AvailableWidget isAvailable={data?.isAvailableForWork} />
 				</InitialRHS>
 			</Grid>
 		</HeaderMainWrapper>

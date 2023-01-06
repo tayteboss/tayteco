@@ -12,7 +12,7 @@ const HeaderIntroWrapper = styled.div`
 `;
 
 const HeaderDescriptionWrapper = styled.div`
-	max-width: 800px;
+	max-width: 460px;
 
 	transition: all var(--transition-speed-fast) ease;
 `;

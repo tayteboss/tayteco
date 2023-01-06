@@ -37,7 +37,7 @@ const IconVariants = {
 	}
 };
 
-const AvailableWidget = () => {
+const AvailableWidget = ({ isAvailable }) => {
 	return (
 		<AvailableWidgetWrapper>
 			<Icon
@@ -46,7 +46,7 @@ const AvailableWidget = () => {
 				animate="visible"
 				exit="hidden"
 			/>
-			<Title>Available for work</Title>
+			<Title>{isAvailable ? 'Available for work' : 'Not available for work'}</Title>
 		</AvailableWidgetWrapper>
 	);
 };

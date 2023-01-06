@@ -97,6 +97,7 @@ const Header = ({ data, cursorRefresh }) => {
 						isAtProjects={isAtProjects}
 						setMenuIsOpen={setMenuIsOpen}
 						menuIsOpen={menuIsOpen}
+						data={data}
 					/>
 					<HeaderMenu
 						isOpen={menuIsOpen}

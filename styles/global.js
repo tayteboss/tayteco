@@ -150,6 +150,17 @@ export const GlobalStyles = createGlobalStyle`
 		p:not(:last-child) {
 			margin-bottom: 16px;
 		}
+
+		a {
+			color: var(--colour-intro-fore);
+			text-decoration: underline;
+
+			transition: all var(--transition-speed-fast) ease;
+
+			&:hover {
+				color: var(--colour-white);
+			}
+		}
 	}
 
 	/* Resets */

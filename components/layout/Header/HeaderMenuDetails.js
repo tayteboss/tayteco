@@ -6,7 +6,7 @@ const HeaderMenuDetailsWrapper = styled.div`
 `;
 
 const IntroStatementWrapper = styled.div`
-	max-width: 350px;
+	max-width: 460px;
 `;
 
 const HeaderMenuDetails = ({ description }) => {
@@ -14,6 +14,7 @@ const HeaderMenuDetails = ({ description }) => {
 		<HeaderMenuDetailsWrapper>
 			<IntroStatementWrapper>
 				<RichText data={description} />
+				<p>© {new Date().getFullYear()} tayte.co</p>
 			</IntroStatementWrapper>
 		</HeaderMenuDetailsWrapper>
 	);
