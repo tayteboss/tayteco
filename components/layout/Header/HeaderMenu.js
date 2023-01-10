@@ -25,15 +25,17 @@ const HeaderMenuTopInner = styled.div`
 const wrapperVariants = {
 	hidden: {
 		opacity: 0,
+		display: 'none',
 		transition: {
-			duration: 0.1,
+			duration: 0.2,
 			ease: 'easeInOut'
 		}
 	},
 	visible: {
 		opacity: 1,
+		display: 'flex',
 		transition: {
-			duration: 0.1,
+			duration: 0.2,
 			ease: 'easeInOut'
 		}
 	}

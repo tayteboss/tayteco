@@ -50,7 +50,6 @@ const getSiteData = async () => {
 		}
 	}`;
 	const data = await fetchAPI(query);
-	console.log('data', data);
 	if (data?.length <= 0 || data === undefined) {
 		return [];
 	}

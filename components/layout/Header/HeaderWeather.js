@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { theme } from '../../../styles/theme';
 
 const HeaderWeatherWrapper = styled.div`
 	text-align: right;
@@ -74,6 +75,64 @@ const HeaderWeather = () => {
 
 		setTime(time);
 	};
+
+	const changeColourTheme = (back, backEngaged, fore) => {
+		var root = document.querySelector(':root');
+
+		root.style.setProperty('--colour-intro-back', back);
+		root.style.setProperty('--colour-intro-back-engaged', backEngaged);
+		root.style.setProperty('--colour-intro-fore', fore);
+	};
+
+	useEffect(() => {
+		const t = theme.colours;
+
+		switch (weather) {
+			case 'Clear':
+				changeColourTheme(
+					t.backClear,
+					t.backClearEngaged,
+					t.foreClear
+				);
+				break;
+			case 'Rain':
+				changeColourTheme(
+					t.backRain,
+					t.backRainEngaged,
+					t.foreRain
+				);
+				break;
+			case 'Drizzle':
+				changeColourTheme(
+					t.backRain,
+					t.backRainEngaged,
+					t.foreRain
+				);
+				break;
+			case 'Thunderstorm':
+				changeColourTheme(
+					t.backThunder,
+					t.backThunderEngaged,
+					t.foreThunder
+				);
+				break;
+			case 'Clouds':
+				changeColourTheme(
+					t.backClouds,
+					t.backCloudsEngaged,
+					t.foreClouds
+				);
+				break;
+		
+			default:
+				changeColourTheme(
+					t.backThunder,
+					t.backThunderEngaged,
+					t.foreThunder
+				);
+				break;
+		}
+	}, [weather])
 
 	useEffect(() => {
 		const timerId = setInterval(startTime, 1000);

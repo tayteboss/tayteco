@@ -52,8 +52,20 @@ const Header = ({ data, cursorRefresh }) => {
 
 	useEffect(() => {
 		cursorRefresh();
-		if (!menuIsOpen) return;
+
+		const timer = setTimeout(() => {
+			cursorRefresh();
+		}, 500);
+
+		if (!menuIsOpen) return () => {
+			clearTimeout(timer);
+		};
+
 		window.addEventListener('scroll', () => setMenuIsOpen(false));
+
+		return () => {
+			clearTimeout(timer);
+		}
 	}, [menuIsOpen])
 
 	useEffect(() => {
