@@ -9,6 +9,10 @@ const HeaderWeatherWrapper = styled.div`
 	text-align: right;
 
 	transition: all var(--transition-speed-fast) ease;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
 const Location = styled.p``;
@@ -115,6 +119,13 @@ const HeaderWeather = ({ cursorRefresh }) => {
 					);
 					break;
 				case 'Clouds':
+					changeColourTheme(
+						t.backClouds,
+						t.backCloudsEngaged,
+						t.foreClouds
+					);
+					break;
+				case 'Mist':
 					changeColourTheme(
 						t.backClouds,
 						t.backCloudsEngaged,

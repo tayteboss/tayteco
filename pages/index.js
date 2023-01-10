@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import { getDashboard, getProjects } from '../lib/datocms';
 import ProjectGrid from '../components/blocks/ProjectGrid';
 import ProjectList from '../components/blocks/ProjectList';
+import MobileShowreel from '../components/blocks/MobileShowreel';
 
 const PageWrapper = styled.div`
 	background: var(--colour-black);
 	scroll-snap-align: ${(props) => props.$isReady ? 'end' : 'unset'};
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		scroll-snap-align: unset;
+	}
 `;
 
 const PageWrapperInner = styled.div`
@@ -16,6 +21,18 @@ const PageWrapperInner = styled.div`
 	display: flex;
 	column-gap: 16px;
 	height: calc(100vh - 55px);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
+`;
+
+const PageWrapperMobile = styled.div`
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
+	}
 `;
 
 const Page = ({ data, projects, setDashboardData, setCursorLoading }) => {
@@ -94,6 +111,9 @@ const Page = ({ data, projects, setDashboardData, setCursorLoading }) => {
 					handleGridIsMouseOut={() => handleGridMouseOverOut('out')}
 				/>
 			</PageWrapperInner>
+			<PageWrapperMobile>
+				<MobileShowreel data={data?.dashboard.mobileShowreel} />
+			</PageWrapperMobile>
 		</PageWrapper>
 	)
 };

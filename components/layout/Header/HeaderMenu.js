@@ -4,6 +4,7 @@ import HeaderMenuDetails from './HeaderMenuDetails'
 import HeaderMenuContact from './HeaderMenuContact'
 import HeaderMenuBottom from './HeaderMenuBottom'
 import Grid from '../../common/Grid';
+import MobileMenuHeader from './MobileMenuHeader';
 
 const HeaderMenuWrapper = styled(motion.div)`
 	position: fixed;
@@ -16,10 +17,19 @@ const HeaderMenuWrapper = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		z-index: 100;
+		overflow-y: auto;
+	}
 `;
 
 const HeaderMenuTopInner = styled.div`
 	padding: 80px 16px 16px 16px;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: 16px;
+	}
 `;
 
 const wrapperVariants = {
@@ -41,7 +51,7 @@ const wrapperVariants = {
 	}
 };
 
-const HeaderMenu = ({ isOpen, data }) => {
+const HeaderMenu = ({ isOpen, data, setMenuIsOpen }) => {
 	return (
 		<>
 			<AnimatePresence>
@@ -54,6 +64,7 @@ const HeaderMenu = ({ isOpen, data }) => {
 					>
 						<HeaderMenuTopInner>
 							<Grid>
+								<MobileMenuHeader setMenuIsOpen={setMenuIsOpen} />
 								<HeaderMenuDetails description={data?.menuDescription} />
 								<HeaderMenuContact
 									igLink={data?.instagramUrl}

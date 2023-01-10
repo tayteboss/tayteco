@@ -6,6 +6,10 @@ const AvailableWidgetWrapper = styled.div`
 	align-items: center;
 
 	transition: all var(--transition-speed-fast) ease;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
 `;
 
 const Icon = styled(motion.div)`

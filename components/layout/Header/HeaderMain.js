@@ -27,6 +27,10 @@ const ScrollTrigger = styled(motion.button)`
 	text-decoration: underline;
 
 	transition: all var(--transition-speed-fast) ease;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none !important;
+	}
 `;
 
 const MenuTrigger = styled(motion.button)`
@@ -34,6 +38,22 @@ const MenuTrigger = styled(motion.button)`
 	text-decoration: underline;
 
 	transition: all var(--transition-speed-fast) ease;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none !important;
+	}
+`;
+
+const MobileMenuTrigger = styled(motion.button)`
+	display: none !important;
+	
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block !important;
+		color: var(--colour-intro-fore);
+		text-decoration: underline;
+	
+		transition: all var(--transition-speed-fast) ease;
+	}
 `;
 
 const wrapperVariants = {
@@ -94,6 +114,17 @@ const HeaderMain = ({ isAtProjects, setMenuIsOpen, menuIsOpen, data }) => {
 							</MenuTrigger>
 						)}
 					</AnimatePresence>
+					<MobileMenuTrigger
+						className="type-p"
+						variants={wrapperVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden"
+						key={3}
+						onClick={() => setMenuIsOpen(!menuIsOpen)}
+					>
+						{menuIsOpen ? 'Close information' : 'More information'}
+					</MobileMenuTrigger>
 					<AvailableWidget isAvailable={data?.isAvailableForWork} />
 				</InitialRHS>
 			</Grid>

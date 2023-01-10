@@ -9,13 +9,20 @@ import HeaderMenu from './HeaderMenu';
 const HeaderWrapper = styled.header`
 	background: ${(props) => props.$isAtProjects ? 'var(--colour-intro-back-engaged);' : 'var(--colour-intro-back)'};
 	color: var(--colour-intro-fore);
-	height: ${(props) => props.$isReady ? '98vh' : '100vh'};
+	height: ${(props) => props.$isReady ? 'calc(var(--vh) * 98)' : 'calc(var(--vh) * 100)'};
 	padding: 16px 0;
 	scroll-snap-align: end;
 	position: relative;
 	z-index: 2;
 
 	transition: all var(--transition-speed-slow) ease;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		height: ${(props) => props.$isReady ? 'calc(var(--vh) * 50)' : 'calc(var(--vh) * 100)'};
+		scroll-snap-align: unset;
+
+		transition: all 500ms ease;
+	}
 
 	.inner-wrapper {
 		height: 100%;
@@ -115,6 +122,7 @@ const Header = ({ data, cursorRefresh }) => {
 					<HeaderMenu
 						isOpen={menuIsOpen}
 						data={data}
+						setMenuIsOpen={setMenuIsOpen}
 					/>
 				</HeaderInner>
 			</InnerWrapper>

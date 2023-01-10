@@ -205,6 +205,10 @@ export const GlobalStyles = createGlobalStyle`
 		{
 			overflow-y: hidden;
 		}
+
+		@media ${theme.mediaBreakpoints.tabletPortrait} {
+			overflow-y: hidden !important;
+		}
 	}
 
 	body
