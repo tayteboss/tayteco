@@ -12,7 +12,6 @@ const RichText = ({ className, data, color }) => {
 				data={data}
 				customNodeRules={[
 					renderNodeRule(isLink, ({ node, children, key }) => {
-						console.log('node', node);
 						return (
 							<Link
 								href={node.url}
