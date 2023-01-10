@@ -31,6 +31,7 @@ const ProjectList = ({
 		handleListIsMouseOut
 	}) => {
 	const hasData = data.length > 0;
+	const dataDescByYear = data.sort((a,b) => b.year - a.year);
 
 	return (
 		<ProjectListWrapper
@@ -41,7 +42,7 @@ const ProjectList = ({
 			className={!isActive ? 'cursor-link' : ''}
 		>
 			<ProjectListInner $isActive={isActive}>
-				{hasData && data.map((item, index) => (
+				{hasData && dataDescByYear.map((item, index) => (
 					<ProjectListCard data={item} key={index} index={index} />
 				))}
 				<ProjectListCard

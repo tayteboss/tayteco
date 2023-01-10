@@ -194,6 +194,9 @@ const ProjectGridCardInner = ({ data, inView, forthcoming }) => {
 							{data.categories && (
 								<Categories>{data.categories}</Categories>
 							)}
+							{data.year && (
+								<Categories>{data.year}</Categories>
+							)}
 						</ContentWrapper>
 					)}
 					{forthcoming && (

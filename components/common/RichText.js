@@ -12,6 +12,7 @@ const RichText = ({ className, data, color }) => {
 				data={data}
 				customNodeRules={[
 					renderNodeRule(isLink, ({ node, children, key }) => {
+						console.log('node', node);
 						return (
 							<Link
 								href={node.url}
@@ -19,7 +20,7 @@ const RichText = ({ className, data, color }) => {
 								key={key}
 								scroll={false}
 							>
-								<a>{children}</a>
+								<a target={'_blank'}>{children}</a>
 							</Link>
 						);
 					}),

@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
+import changeColourTheme from '../../../utils/changeColourTheme';
+import HeaderThemeSwatches from './HeaderThemeSwatches';
 
 const HeaderWeatherWrapper = styled.div`
 	text-align: right;
@@ -13,7 +15,7 @@ const Location = styled.p``;
 
 const Weather = styled.p``;
 
-const LoadingWrapper = styled.div`
+const LoadingWrapper = styled(motion.div)`
 	display: flex;
 	align-items: center;
 `;
@@ -26,30 +28,31 @@ const Icon = styled(motion.div)`
 	margin-right: 9px;
 `;
 
+const MotionWrapper = styled(motion.div)``;
+
 const wrapperVariants = {
 	hidden: {
 		opacity: 0,
 		transition: {
-			duration: 0.3,
+			duration: 0.2,
 			ease: 'easeInOut'
 		}
 	},
 	visible: {
-		opacity: [1, 0],
+		opacity: 1,
 		transition: {
-			duration: 0.6,
-			ease: 'linear',
-			repeat: 'Infinity',
-			repeatType: "reverse",
+			duration: 0.2,
+			ease: 'easeInOut'
 		}
 	}
 };
 
-const HeaderWeather = () => {
+const HeaderWeather = ({ cursorRefresh }) => {
 	const [time, setTime] = useState(false);
 	const [weather, setWeather] = useState(false);
 	const [temp, setTemp] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const [themeSwatchesIsActive, setThemeSwatchesIsActive] = useState(true);
 
 	const startTime = () => {
 		let date = new Date();
@@ -76,63 +79,63 @@ const HeaderWeather = () => {
 		setTime(time);
 	};
 
-	const changeColourTheme = (back, backEngaged, fore) => {
-		var root = document.querySelector(':root');
-
-		root.style.setProperty('--colour-intro-back', back);
-		root.style.setProperty('--colour-intro-back-engaged', backEngaged);
-		root.style.setProperty('--colour-intro-fore', fore);
-	};
-
 	useEffect(() => {
-		const t = theme.colours;
+		if (!isLoading) return;
+		cursorRefresh();
 
-		switch (weather) {
-			case 'Clear':
-				changeColourTheme(
-					t.backClear,
-					t.backClearEngaged,
-					t.foreClear
-				);
-				break;
-			case 'Rain':
-				changeColourTheme(
-					t.backRain,
-					t.backRainEngaged,
-					t.foreRain
-				);
-				break;
-			case 'Drizzle':
-				changeColourTheme(
-					t.backRain,
-					t.backRainEngaged,
-					t.foreRain
-				);
-				break;
-			case 'Thunderstorm':
-				changeColourTheme(
-					t.backThunder,
-					t.backThunderEngaged,
-					t.foreThunder
-				);
-				break;
-			case 'Clouds':
-				changeColourTheme(
-					t.backClouds,
-					t.backCloudsEngaged,
-					t.foreClouds
-				);
-				break;
-		
-			default:
-				changeColourTheme(
-					t.backThunder,
-					t.backThunderEngaged,
-					t.foreThunder
-				);
-				break;
+		const timer = setTimeout(() => {
+			const t = theme.colours;
+			switch (weather) {
+				case 'Clear':
+					changeColourTheme(
+						t.backClear,
+						t.backClearEngaged,
+						t.foreClear
+					);
+					break;
+				case 'Rain':
+					changeColourTheme(
+						t.backRain,
+						t.backRainEngaged,
+						t.foreRain
+					);
+					break;
+				case 'Drizzle':
+					changeColourTheme(
+						t.backRain,
+						t.backRainEngaged,
+						t.foreRain
+					);
+					break;
+				case 'Thunderstorm':
+					changeColourTheme(
+						t.backThunder,
+						t.backThunderEngaged,
+						t.foreThunder
+					);
+					break;
+				case 'Clouds':
+					changeColourTheme(
+						t.backClouds,
+						t.backCloudsEngaged,
+						t.foreClouds
+					);
+					break;
+			
+				default:
+					changeColourTheme(
+						t.backThunder,
+						t.backThunderEngaged,
+						t.foreThunder
+					);
+					break;
+			}
+		}, 750);
+
+		return () => {
+			clearTimeout(timer);
 		}
-	}, [weather])
+	}, [weather, isLoading])
 
 	useEffect(() => {
 		const timerId = setInterval(startTime, 1000);
@@ -146,35 +149,59 @@ const HeaderWeather = () => {
 				setTemp(Math.floor(data?.main?.temp - 273.15));
 			})
 
-		setTimeout(() => {
+		const loadingDelayTimer = setTimeout(() => {
 			setIsLoading(false);
 		}, 1500);
 
+		const sneakSwatchesTimer = setTimeout(() => {
+			setThemeSwatchesIsActive(false);
+		}, 3000);
+
 		return function cleanup() {
 			clearInterval(timerId);
+			clearTimeout(loadingDelayTimer);
+			clearTimeout(sneakSwatchesTimer);
 		};
 	}, []);
 
 	return (
-		<HeaderWeatherWrapper>
-			{isLoading ? (
-				<LoadingWrapper>
-					<Icon
+		<HeaderWeatherWrapper
+			onMouseOver={() => setThemeSwatchesIsActive(true)}
+			onMouseOut={() => setThemeSwatchesIsActive(false)}
+		>
+			<AnimatePresence exitBeforeEnter>
+				{isLoading ? (
+					<LoadingWrapper
 						variants={wrapperVariants}
-						initial="hidden"
-						animate="visible"
-						exit="hidden"
-					/>
-					<Location>Loading</Location>
-				</LoadingWrapper>
-			) : (
-				<>
-					{time && (
-						<Location>Melbourne - {time}</Location>
-					)}
-					<Weather>{weather && weather} {temp && temp}°</Weather>
-				</>
-			)}
+						initial='hidden'
+						animate='visible'
+						exit='hidden'
+						id="1"
+					>
+						<Icon
+							variants={wrapperVariants}
+							initial="hidden"
+							animate="visible"
+							exit="hidden"
+						/>
+						<Location>Loading</Location>
+					</LoadingWrapper>
+				) : (
+					<MotionWrapper
+						variants={wrapperVariants}
+						initial='hidden'
+						animate='visible'
+						exit='hidden'
+						id="2"
+					>
+						{time && (
+							<Location>Melbourne - {time}</Location>
+						)}
+						<Weather>{weather && weather} {temp && temp}°</Weather>
+						<HeaderThemeSwatches isActive={themeSwatchesIsActive} />
+					</MotionWrapper>
+				)}
+			</AnimatePresence>
 		</HeaderWeatherWrapper>
 	);
 };

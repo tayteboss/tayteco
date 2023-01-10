@@ -17,7 +17,7 @@ const HeaderDescriptionWrapper = styled.div`
 	transition: all var(--transition-speed-fast) ease;
 `;
 
-const HeaderIntro = ({ description }) => {
+const HeaderIntro = ({ description, cursorRefresh }) => {
 	return (
 		<HeaderIntroWrapper>
 			{description && (
@@ -25,7 +25,7 @@ const HeaderIntro = ({ description }) => {
 					<RichText data={description} />
 				</HeaderDescriptionWrapper>
 			)}
-			<HeaderWeather />
+			<HeaderWeather cursorRefresh={cursorRefresh} />
 		</HeaderIntroWrapper>
 	);
 };

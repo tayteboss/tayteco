@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { getDashboard, getProjects } from '../lib/datocms';
 import ProjectGrid from '../components/blocks/ProjectGrid';
@@ -22,13 +22,15 @@ const Page = ({ data, projects, setDashboardData, setCursorLoading }) => {
 	const [gridIsActive, setGridIsActive] = useState(true);
 	const [isReady, setIsReady] = useState(false);
 
+	const timeoutId = useRef(null);
+
 	const handleViewSwitchLogic = (isMouseOver, viewToOpen) => {
-		const timer = setTimeout(() => {
+		timeoutId.current = setTimeout(() => {
 			viewToOpen === 'grid' ? setGridIsActive(true) : setGridIsActive(false);
 		}, 1300);
 
 		if (!isMouseOver) {
-			clearTimeout(timer);
+			clearTimeout(timeoutId.current);
 			setCursorLoading(false);
 		} else {
 			setCursorLoading(true);
@@ -37,6 +39,7 @@ const Page = ({ data, projects, setDashboardData, setCursorLoading }) => {
 
 	const handleGridMouseOverOut = (action) => {
 		if (gridIsActive) return;
+		clearTimeout(timeoutId.current);
 
 		if (action === 'over') {
 			handleViewSwitchLogic(true, 'grid');
@@ -47,6 +50,7 @@ const Page = ({ data, projects, setDashboardData, setCursorLoading }) => {
 
 	const handleListMouseOverOut = (action) => {
 		if (!gridIsActive) return;
+		clearTimeout(timeoutId.current);
 
 		if (action === 'over') {
 			handleViewSwitchLogic(true, 'list');

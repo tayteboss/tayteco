@@ -103,6 +103,7 @@ const Header = ({ data, cursorRefresh }) => {
 				<HeaderInner>
 					<HeaderIntro
 						description={data.description}
+						cursorRefresh={cursorRefresh}
 					/>
 					<HeaderMain
 						isInitialScroll={isInitialScroll}

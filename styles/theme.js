@@ -12,9 +12,9 @@ export const theme = {
 		backClear: 'hsl(60, 15%, 86%)',
 		backClearEngaged: 'hsl(60, 15%, 15%)',
 		foreClear: '#878781',
-		backClouds: 'hsl(220, 5%, 48%)',
-		backCloudsEngaged: 'hsl(220, 5%, 15%)',
-		foreClouds: '#D0D7E5',
+		backClouds: 'hsl(150, 4%, 67%)',
+		backCloudsEngaged: 'hsl(150, 4%, 15%)',
+		foreClouds: '#E3EBE7',
 	},
 	fonts: {
 		default: 'Studio Pro',

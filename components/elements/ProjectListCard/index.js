@@ -78,7 +78,7 @@ const IconVariants = {
 };
 
 const ProjectListCardInner = ({ data, index, forthcoming }) => {
-	const { title, categories, link } = data;
+	const { title, categories, link, year } = data;
 
 	return (
 		<ProjectListCardWrapper $forthcoming={forthcoming}>
@@ -103,6 +103,9 @@ const ProjectListCardInner = ({ data, index, forthcoming }) => {
 						)}
 						{categories && (
 							<Text>{categories}</Text>
+						)}
+						{year && (
+							<Text>{year}</Text>
 						)}
 					</ContentWrapper>
 					<Text>{index < 9 ? `0${index + 1}` : index + 1}</Text>
