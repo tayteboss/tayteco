@@ -12,7 +12,8 @@ const Layout = ({
 	data,
 	cursorRefresh,
 	cursorLoading,
-	setFaviconTheme 
+	setFaviconTheme,
+	setIsInitialScroll
 }) => {
 	return (
 		<>
@@ -21,6 +22,7 @@ const Layout = ({
 					data={data}
 					cursorRefresh={cursorRefresh}
 					setFaviconTheme={setFaviconTheme}
+					setIsInitialScroll={setIsInitialScroll}
 				/>
 			)}
 			<Main>

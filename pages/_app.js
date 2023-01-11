@@ -16,6 +16,7 @@ function App({ Component, pageProps }) {
 	const [cursorRefresh, setCursorRefresh] = useState(0);
 	const [cursorLoading, setCursorLoading] = useState(false);
 	const [faviconTheme, setFaviconTheme] = useState('thunder');
+	const [isInitialScroll, setIsInitialScroll] = useState(true);
 	const router = useRouter();
 
 	const handleExitComplete = () => {
@@ -65,6 +66,8 @@ function App({ Component, pageProps }) {
 					cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
 					cursorLoading={cursorLoading}
 					setFaviconTheme={setFaviconTheme}
+					setIsInitialScroll={setIsInitialScroll}
+					isInitialScroll={isInitialScroll}
 				>
 					<AnimatePresence
 						onExitComplete={() => handleExitComplete()}
@@ -76,6 +79,7 @@ function App({ Component, pageProps }) {
 							cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
 							setCursorLoading={(val) => setCursorLoading(val)}
 							faviconTheme={faviconTheme}
+							isInitialScroll={isInitialScroll}
 						/>
 					</AnimatePresence>
 				</Layout>

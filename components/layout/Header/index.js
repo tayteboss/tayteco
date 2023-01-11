@@ -9,7 +9,7 @@ import HeaderMenu from './HeaderMenu';
 const HeaderWrapper = styled.header`
 	background: ${(props) => props.$isAtProjects ? 'var(--colour-intro-back-engaged);' : 'var(--colour-intro-back)'};
 	color: var(--colour-intro-fore);
-	height: ${(props) => props.$isReady ? 'calc(var(--vh) * 98)' : 'calc(var(--vh) * 100)'};
+	height: ${(props) => props.$isReady ? 'calc(var(--vh) * 100 - 32px)' : 'calc(var(--vh) * 100)'};
 	padding: 16px 0;
 	scroll-snap-align: end;
 	position: relative;
@@ -37,9 +37,14 @@ const HeaderInner = styled.div`
 	position: relative;
 `;
 
-const Header = ({ data, cursorRefresh, setFaviconTheme }) => {
+const Header = ({
+	data,
+	cursorRefresh,
+	setFaviconTheme,
+	setIsInitialScroll,
+	isInitialScroll
+}) => {
 	const [isReady, setIsReady] = useState(false);
-	const [isInitialScroll, setIsInitialScroll] = useState(true);
 	const [isAtProjects, setIsAtProjects] = useState(false);
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
 

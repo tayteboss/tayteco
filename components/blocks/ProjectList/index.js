@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ProjectListCard from '../../elements/ProjectListCard';
 
 const ProjectListWrapper = styled.div`
-	width: ${(props) => props.$isActive ? 'calc(90vw)' : 'calc(10vw)'};
+	width: ${(props) => props.$isInitial ? '0' : props.$isActive ? '90vw' : '10vw'};
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
@@ -28,7 +28,8 @@ const ProjectList = ({
 		isActive,
 		setGridIsActive,
 		handleListIsMouseOver,
-		handleListIsMouseOut
+		handleListIsMouseOut,
+		isInitial
 	}) => {
 	const hasData = data.length > 0;
 	const dataDescByYear = data.sort((a,b) => b.year - a.year);
@@ -36,6 +37,7 @@ const ProjectList = ({
 	return (
 		<ProjectListWrapper
 			$isActive={isActive}
+			$isInitial={isInitial}
 			onClick={() => setGridIsActive(false)}
 			onMouseOver={() => handleListIsMouseOver()}
 			onMouseOut={() => handleListIsMouseOut()}

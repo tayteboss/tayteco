@@ -3,7 +3,7 @@ import Grid from '../../common/Grid';
 import ProjectGridCard from '../../elements/ProjectGridCard';
 
 const ProjectGridWrapper = styled.div`
-	width: ${(props) => props.$isActive ? 'calc(90vw)' : 'calc(10vw)'};
+	width: ${(props) => props.$isInitial ? '100vw' : props.$isActive ? '90vw' : '10vw'};
 	overflow: hidden;
 	opacity: ${(props) => props.$isActive ? 1 : 0.33};
 
@@ -15,12 +15,14 @@ const ProjectGridWrapper = styled.div`
 `;
 
 const ProjectGridInner = styled.div`
-	min-width: calc(90vw - 32px);
+	min-width: ${(props) => props.$isInitial ? 'calc(100vw - 32px);' : 'calc(90vw - 32px)'};
 	max-width: calc(90vw - 32px);
 	height: calc(100vh - 55px);
 	overflow-y: ${(props) => props.$isActive ? 'auto' : 'none'};
 	pointer-events: ${(props) => props.$isActive ? 'all' : 'none'};
 	padding-bottom: 60px;
+
+	transition: all 500ms ease;
 `;
 
 const ProjectGrid = ({
@@ -28,19 +30,24 @@ const ProjectGrid = ({
 		isActive,
 		handleGridIsMouseOver,
 		handleGridIsMouseOut,
-		setGridIsActive
+		setGridIsActive,
+		isInitial
 	}) => {
 	const hasData = data.length > 0;
 
 	return (
 		<ProjectGridWrapper
 			$isActive={isActive}
+			$isInitial={isInitial}
 			onMouseOver={() => handleGridIsMouseOver()}
 			onMouseOut={() => handleGridIsMouseOut()}
 			onClick={() => setGridIsActive(true)}
 			className={!isActive ? 'cursor-link' : ''}
 		>
-			<ProjectGridInner $isActive={isActive}>
+			<ProjectGridInner
+				$isActive={isActive}
+				$isInitial={isInitial}
+			>
 				<Grid>
 					{hasData && data.map((item, index) => (
 						<ProjectGridCard data={item} key={index} />
