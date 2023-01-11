@@ -1,20 +1,8 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-const ProjectListCardWrapper = styled.div`
+const ProjectListCardOuterWrapper = styled.div`
 	position: relative;
-	min-width: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	padding: 8px 0 11px;
-	text-align: left;
-
-	&:hover {
-		p {
-			color: var(--colour-white);
-		}
-	}
 
 	&::before {
 		content: '';
@@ -41,12 +29,28 @@ const ProjectListCardWrapper = styled.div`
 	}
 `;
 
+const ProjectListCardWrapper = styled.div`
+	position: relative;
+	min-width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: 8px 0 11px;
+	text-align: left;
+
+	&:hover {
+		p {
+			color: var(--colour-white);
+		}
+	}
+`;
+
 const Link = styled.a``;
 
 const ContentWrapper = styled.div``;
 
 const Text = styled.p`
-	color: var(--colour-intro-fore);
+	color: ${(props) => props.theme.colours.foreThunder};
 
 	transition: all var(--transition-speed-fast) ease;
 `;
@@ -119,7 +123,7 @@ const ProjectListCard = ({ data, index, forthcoming }) => {
 	const { link } = data;
 
 	return (
-		<>
+		<ProjectListCardOuterWrapper>
 			{forthcoming ? (
 				<Link href="mailto:speakto@tayte.co">
 					<ProjectListCardInner
@@ -137,7 +141,7 @@ const ProjectListCard = ({ data, index, forthcoming }) => {
 					<ProjectListCardInner data={data} index={index} />
 				)
 			)}
-		</>
+		</ProjectListCardOuterWrapper>
 	);
 };
 

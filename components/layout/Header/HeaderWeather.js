@@ -132,7 +132,7 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 						t.backCloudsEngaged,
 						t.foreClouds
 					);
-					setFaviconTheme('Clouds');
+					setFaviconTheme('clouds');
 					break;
 				case 'Mist':
 					changeColourTheme(
