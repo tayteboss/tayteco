@@ -15,6 +15,7 @@ function App({ Component, pageProps }) {
 	const [dashboardData, setDashboardData] = useState(null);
 	const [cursorRefresh, setCursorRefresh] = useState(0);
 	const [cursorLoading, setCursorLoading] = useState(false);
+	const [faviconTheme, setFaviconTheme] = useState('thunder');
 	const router = useRouter();
 
 	const handleExitComplete = () => {
@@ -63,6 +64,7 @@ function App({ Component, pageProps }) {
 					data={dashboardData}
 					cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
 					cursorLoading={cursorLoading}
+					setFaviconTheme={setFaviconTheme}
 				>
 					<AnimatePresence
 						onExitComplete={() => handleExitComplete()}
@@ -73,6 +75,7 @@ function App({ Component, pageProps }) {
 							key={router.asPath}
 							cursorRefresh={() => setCursorRefresh(cursorRefresh + 1)}
 							setCursorLoading={(val) => setCursorLoading(val)}
+							faviconTheme={faviconTheme}
 						/>
 					</AnimatePresence>
 				</Layout>

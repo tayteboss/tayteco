@@ -1,5 +1,4 @@
 import Header from './Header';
-import Footer from './Footer';
 import styled from 'styled-components';
 import Cursor from '../elements/Cursor';
 
@@ -8,10 +7,22 @@ const Main = styled.main`
 	z-index: 1;
 `;
 
-const Layout = ({ children, data, cursorRefresh, cursorLoading }) => {
+const Layout = ({
+	children,
+	data,
+	cursorRefresh,
+	cursorLoading,
+	setFaviconTheme 
+}) => {
 	return (
 		<>
-			{data && <Header data={data} cursorRefresh={cursorRefresh} />}
+			{data && (
+				<Header
+					data={data}
+					cursorRefresh={cursorRefresh}
+					setFaviconTheme={setFaviconTheme}
+				/>
+			)}
 			<Main>
 				{ children }
 			</Main>

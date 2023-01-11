@@ -51,7 +51,7 @@ const wrapperVariants = {
 	}
 };
 
-const HeaderWeather = ({ cursorRefresh }) => {
+const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 	const [time, setTime] = useState(false);
 	const [weather, setWeather] = useState(false);
 	const [temp, setTemp] = useState(false);
@@ -84,8 +84,12 @@ const HeaderWeather = ({ cursorRefresh }) => {
 	};
 
 	useEffect(() => {
-		if (!isLoading) return;
 		cursorRefresh();
+	}, [themeSwatchesIsActive])
+	
+
+	useEffect(() => {
+		if (!isLoading) return;
 
 		const timer = setTimeout(() => {
 			const t = theme.colours;
@@ -96,6 +100,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backClearEngaged,
 						t.foreClear
 					);
+					setFaviconTheme('clear');
 					break;
 				case 'Rain':
 					changeColourTheme(
@@ -103,6 +108,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backRainEngaged,
 						t.foreRain
 					);
+					setFaviconTheme('rain');
 					break;
 				case 'Drizzle':
 					changeColourTheme(
@@ -110,6 +116,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backRainEngaged,
 						t.foreRain
 					);
+					setFaviconTheme('rain');
 					break;
 				case 'Thunderstorm':
 					changeColourTheme(
@@ -117,6 +124,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backThunderEngaged,
 						t.foreThunder
 					);
+					setFaviconTheme('thunder');
 					break;
 				case 'Clouds':
 					changeColourTheme(
@@ -124,6 +132,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backCloudsEngaged,
 						t.foreClouds
 					);
+					setFaviconTheme('Clouds');
 					break;
 				case 'Mist':
 					changeColourTheme(
@@ -131,6 +140,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backCloudsEngaged,
 						t.foreClouds
 					);
+					setFaviconTheme('clouds');
 					break;
 			
 				default:
@@ -139,6 +149,7 @@ const HeaderWeather = ({ cursorRefresh }) => {
 						t.backThunderEngaged,
 						t.foreThunder
 					);
+					setFaviconTheme('thunder');
 					break;
 			}
 		}, 750);
@@ -209,7 +220,10 @@ const HeaderWeather = ({ cursorRefresh }) => {
 							<Location>Melbourne - {time}</Location>
 						)}
 						<Weather>{weather && weather} {temp && temp}°</Weather>
-						<HeaderThemeSwatches isActive={themeSwatchesIsActive} />
+						<HeaderThemeSwatches
+							isActive={themeSwatchesIsActive}
+							setFaviconTheme={setFaviconTheme}
+						/>
 					</MotionWrapper>
 				)}
 			</AnimatePresence>

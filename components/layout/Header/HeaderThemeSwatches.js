@@ -58,7 +58,7 @@ const wrapperVariants = {
 	}
 };
 
-const HeaderThemeSwatches = ({ isActive }) => {
+const HeaderThemeSwatches = ({ isActive, setFaviconTheme }) => {
 	const handleThemeChange = (weather) => {
 		const t = theme.colours;
 			switch (weather) {
@@ -68,6 +68,7 @@ const HeaderThemeSwatches = ({ isActive }) => {
 						t.backClearEngaged,
 						t.foreClear
 					);
+					setFaviconTheme('clear');
 					break;
 				case 'Rain':
 					changeColourTheme(
@@ -75,6 +76,7 @@ const HeaderThemeSwatches = ({ isActive }) => {
 						t.backRainEngaged,
 						t.foreRain
 					);
+					setFaviconTheme('rain');
 					break;
 				case 'Drizzle':
 					changeColourTheme(
@@ -82,6 +84,7 @@ const HeaderThemeSwatches = ({ isActive }) => {
 						t.backRainEngaged,
 						t.foreRain
 					);
+					setFaviconTheme('rain');
 					break;
 				case 'Thunderstorm':
 					changeColourTheme(
@@ -89,6 +92,7 @@ const HeaderThemeSwatches = ({ isActive }) => {
 						t.backThunderEngaged,
 						t.foreThunder
 					);
+					setFaviconTheme('thunder');
 					break;
 				case 'Clouds':
 					changeColourTheme(
@@ -96,6 +100,7 @@ const HeaderThemeSwatches = ({ isActive }) => {
 						t.backCloudsEngaged,
 						t.foreClouds
 					);
+					setFaviconTheme('clouds');
 					break;
 			
 				default:
@@ -104,6 +109,7 @@ const HeaderThemeSwatches = ({ isActive }) => {
 						t.backThunderEngaged,
 						t.foreThunder
 					);
+					setFaviconTheme('thunder');
 					break;
 			}
 	}

@@ -37,7 +37,7 @@ const HeaderInner = styled.div`
 	position: relative;
 `;
 
-const Header = ({ data, cursorRefresh }) => {
+const Header = ({ data, cursorRefresh, setFaviconTheme }) => {
 	const [isReady, setIsReady] = useState(false);
 	const [isInitialScroll, setIsInitialScroll] = useState(true);
 	const [isAtProjects, setIsAtProjects] = useState(false);
@@ -111,6 +111,7 @@ const Header = ({ data, cursorRefresh }) => {
 					<HeaderIntro
 						description={data.description}
 						cursorRefresh={cursorRefresh}
+						setFaviconTheme={setFaviconTheme}
 					/>
 					<HeaderMain
 						isInitialScroll={isInitialScroll}
