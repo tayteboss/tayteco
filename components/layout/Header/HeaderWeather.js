@@ -90,9 +90,6 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 
 	useEffect(() => {
 		if (!isLoading) return;
-
-		console.log('weather', weather);
-
 		const timer = setTimeout(() => {
 			const t = theme.colours;
 			switch (weather) {
