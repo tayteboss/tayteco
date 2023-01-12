@@ -91,6 +91,8 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 	useEffect(() => {
 		if (!isLoading) return;
 
+		console.log('weather', weather);
+
 		const timer = setTimeout(() => {
 			const t = theme.colours;
 			switch (weather) {
@@ -118,7 +120,7 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 					);
 					setFaviconTheme('rain');
 					break;
-				case 'Thunderstorm':
+				case 'Clouds':
 					changeColourTheme(
 						t.backThunder,
 						t.backThunderEngaged,
