@@ -168,15 +168,12 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 			.then((data) => {
 				setWeather(data?.weather[0]?.main)
 				setTemp(Math.floor(data?.main?.temp - 273.15));
+				setIsLoading(false);
 			})
-
-		const loadingDelayTimer = setTimeout(() => {
-			setIsLoading(false);
-		}, 1500);
 
 		const sneakSwatchesTimer = setTimeout(() => {
 			setThemeSwatchesIsActive(false);
-		}, 3000);
+		}, 5000);
 
 		return function cleanup() {
 			clearInterval(timerId);
