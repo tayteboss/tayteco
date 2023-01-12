@@ -120,13 +120,13 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 					);
 					setFaviconTheme('rain');
 					break;
-				case 'Clouds':
+				case 'Rain':
 					changeColourTheme(
 						t.backThunder,
 						t.backThunderEngaged,
 						t.foreThunder
 					);
-					setFaviconTheme('thunder');
+					setFaviconTheme('rain');
 					break;
 				case 'Clouds':
 					changeColourTheme(
@@ -143,6 +143,14 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 						t.foreClouds
 					);
 					setFaviconTheme('clouds');
+					break;
+				case 'Thunderstorm':
+					changeColourTheme(
+						t.backClouds,
+						t.backCloudsEngaged,
+						t.foreClouds
+					);
+					setFaviconTheme('thunder');
 					break;
 			
 				default:
