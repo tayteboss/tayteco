@@ -89,7 +89,7 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 	
 
 	useEffect(() => {
-		if (!isLoading) return;
+		// if (!isLoading) return;
 		const timer = setTimeout(() => {
 			const t = theme.colours;
 			switch (weather) {
@@ -114,14 +114,6 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 						t.backRain,
 						t.backRainEngaged,
 						t.foreRain
-					);
-					setFaviconTheme('rain');
-					break;
-				case 'Rain':
-					changeColourTheme(
-						t.backThunder,
-						t.backThunderEngaged,
-						t.foreThunder
 					);
 					setFaviconTheme('rain');
 					break;
