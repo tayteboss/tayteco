@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 import changeColourTheme from '../../../utils/changeColourTheme';
 import HeaderThemeSwatches from './HeaderThemeSwatches';
+import moment from "moment-timezone";
 
 const HeaderWeatherWrapper = styled.div`
 	text-align: right;
@@ -58,12 +59,26 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [themeSwatchesIsActive, setThemeSwatchesIsActive] = useState(true);
 
-	const startTime = () => {
-		let date = new Date();
-		let h = date.getHours(); // 0 - 23
-		let m = date.getMinutes(); // 0 - 59
-		let s = date.getSeconds(); // 0 - 59
-		let session = "AM";
+	const startTime = (location) => {
+		let h = 0;
+		let m = 0;
+		let s = 0;
+		let session = "AM"
+	
+		if (location != 'London') {
+			let date = new Date();
+		
+			h = date.getHours(); // 0 - 23
+			m = date.getMinutes(); // 0 - 59
+			s = date.getSeconds(); // 0 - 59
+			session = "AM";
+		} else {
+			const time = moment().tz('Europe/London');
+			h = Number(time.format('hh'));
+			m = Number(time.format('mm'));
+			s = Number(time.format('ss'));
+		}
+	
 		
 		if(h == 0){
 			h = 12;
@@ -79,7 +94,7 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 		s = (s < 10) ? "0" + s : s;
 		
 		let time = h + ":" + m + ":" + s + " " + session;
-
+	
 		setTime(time);
 	};
 
@@ -89,7 +104,6 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 	
 
 	useEffect(() => {
-		// if (!isLoading) return;
 		const timer = setTimeout(() => {
 			const t = theme.colours;
 			switch (weather) {
@@ -159,7 +173,7 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 	}, [weather, isLoading])
 
 	useEffect(() => {
-		const timerId = setInterval(startTime, 1000);
+		const timerId = setInterval(startTime('London'), 1000);
 
 		fetch('/api/fetchWeather', {
 			method: 'GET'
@@ -177,7 +191,6 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 
 		return function cleanup() {
 			clearInterval(timerId);
-			clearTimeout(loadingDelayTimer);
 			clearTimeout(sneakSwatchesTimer);
 		};
 	}, []);
@@ -213,7 +226,7 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 						id="2"
 					>
 						{time && (
-							<Location>Melbourne - {time}</Location>
+							<Location>London - {time}</Location>
 						)}
 						<Weather>{weather && weather} {temp && temp}°</Weather>
 						<HeaderThemeSwatches

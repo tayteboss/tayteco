@@ -13,7 +13,7 @@ const AvailableWidgetWrapper = styled.div`
 `;
 
 const Icon = styled(motion.div)`
-	background: var(--colour-intro-fore);
+	background: rgb(0, 255, 0);
 	height: 7px;
 	width: 7px;
 	border-radius: 100%;
