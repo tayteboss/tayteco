@@ -74,12 +74,11 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 			session = "AM";
 		} else {
 			const time = moment().tz('Europe/London');
-			h = Number(time.format('hh'));
-			m = Number(time.format('mm'));
-			s = Number(time.format('ss'));
+			h = time.format('HH');
+			m = time.format('mm');
+			s = time.format('ss');
 		}
-	
-		
+
 		if(h == 0){
 			h = 12;
 		}
