@@ -17,6 +17,7 @@ const HeaderMenuWrapper = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	pointer-events: all;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		z-index: 100;

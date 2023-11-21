@@ -8,6 +8,7 @@ import moment from "moment-timezone";
 
 const HeaderWeatherWrapper = styled.div`
 	text-align: right;
+	pointer-events: all;
 
 	transition: all var(--transition-speed-fast) ease;
 
@@ -73,10 +74,10 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 			s = date.getSeconds(); // 0 - 59
 			session = "AM";
 		} else {
-			const time = moment().tz('Europe/London');
-			h = time.format('HH');
-			m = time.format('mm');
-			s = time.format('ss');
+			const londonTime = moment().tz('Europe/London');
+			h = londonTime.format('HH');
+			m = londonTime.format('mm');
+			s = londonTime.format('ss');
 		}
 
 		if(h == 0){
@@ -89,11 +90,9 @@ const HeaderWeather = ({ cursorRefresh, setFaviconTheme }) => {
 		}
 		
 		h = (h < 10) ? "0" + h : h;
-		m = (m < 10) ? "0" + m : m;
-		s = (s < 10) ? "0" + s : s;
-		
-		let time = h + ":" + m + ":" + s + " " + session;
-	
+
+		let time = h + ":" + m + " " + session;
+
 		setTime(time);
 	};
 

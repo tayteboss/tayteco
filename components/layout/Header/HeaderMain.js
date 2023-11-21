@@ -25,6 +25,7 @@ const InitialRHS = styled.div`
 const ScrollTrigger = styled(motion.button)`
 	color: var(--colour-intro-fore);
 	text-decoration: underline;
+	pointer-events: all;
 
 	transition: all var(--transition-speed-fast) ease;
 
@@ -36,6 +37,7 @@ const ScrollTrigger = styled(motion.button)`
 const MenuTrigger = styled(motion.button)`
 	color: var(--colour-intro-fore);
 	text-decoration: underline;
+	pointer-events: all;
 
 	transition: all var(--transition-speed-fast) ease;
 
@@ -46,6 +48,7 @@ const MenuTrigger = styled(motion.button)`
 
 const MobileMenuTrigger = styled(motion.button)`
 	display: none !important;
+	pointer-events: all;
 	
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: block !important;
